@@ -1,0 +1,30 @@
+<ng-container *ngIf="editions && editions.length">
+  <mat-card-content
+    class="table edition-card"
+    fxLayout="column"
+    fxLayoutGap="16px"
+  >
+    <ng-container *ngFor="let edition of editions">
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
+        <div fxLayout="column">
+          <span fxLayout="row" fxLayoutGap="10px">
+            <span><span translate>edition</span> {{ edition.year }}</span>
+            <span class="timezone-edition"
+              >(<span translate>timezone</span> {{ edition.timezone }})</span
+            >
+          </span>
+          <span class="card-id">{{ edition._id }}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end center">
+          <button
+            mat-icon-button
+            (click)="selectEdition(edition)"
+            [matTooltip]="'select_edition' | translate"
+          >
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </mat-card-content>
+</ng-container>

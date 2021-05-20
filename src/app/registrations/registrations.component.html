@@ -1,0 +1,79 @@
+<mat-sidenav-container>
+  <div class="header text-center">
+    <h1>
+      <span translate>Registrations</span>
+    </h1>
+  </div>
+  <button
+    class="add-button"
+    mat-fab
+    (click)="newRegistration(edition)"
+    [matTooltip]="'add_registration' | translate"
+  >
+    <i class="fas fa-plus"></i>
+  </button>
+  <div class="container pt-16" *ngIf="registrations">
+    <button translate class="btn" (click)="all(registrations)">All</button>
+    <button translate class="btn" (click)="homme(registrations)">Man</button>
+    <button translate class="btn" (click)="femme(registrations)">Women</button>
+    <table class="table">
+      <thead>
+        <th>#</th>
+        <th translate>BIB</th>
+        <th translate>New BIB</th>
+        <th translate>Gender</th>
+        <th translate>FirstName</th>
+        <th translate>LastName</th>
+        <th translate>BirthDate</th>
+        <th translate>createdAt</th>
+        <th title="Click to sort"  class='sort' translate (click)="sortResult(registrations)">
+         timingResult
+        </th>
+        <th class="text-right" translate>Actions</th>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let registration of registrations">
+          <td>{{ registration._id }}</td>
+          <td>{{ registration.bibNumber }}</td>
+          <td>{{ registration.newBibNumber }}</td>
+          <td>{{ registration.gender }}</td>
+          <td>{{ registration.firstName }}</td>
+          <td>{{ registration.lastName }}</td>
+          <td>{{ registration.birthDate | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ registration.created_at | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ registration.timingResult }}</td>
+
+          <td class="text-right">
+            <button
+              mat-icon-button
+              (click)="editRegistration(registration)"
+              [matTooltip]="'edit_registration' | translate"
+            >
+              <i class="fas fa-pen"></i>
+            </button>
+            <button
+              mat-icon-button
+              (click)="deleteRegistration(registration)"
+              [matTooltip]="'delete_registration' | translate"
+            >
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <mat-sidenav #settingsSidenav position="end">
+    <app-edit-registration
+      *ngIf="action === 'editRegistration' && selectedRegistration"
+      [registration]="selectedRegistration"
+      (saveRegistration)="saveRegistration($event)"
+    ></app-edit-registration>
+    <app-add-registration
+      (addRegistration)="addRegistration($event)"
+      [edition]="edition"
+      *ngIf="action === 'newRegistration'"
+    ></app-add-registration>
+  </mat-sidenav>
+</mat-sidenav-container>

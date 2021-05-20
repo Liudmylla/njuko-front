@@ -1,0 +1,51 @@
+@import "src/theme/theme-variables";
+
+html,
+body {
+  height: 100%;
+  position: relative;
+}
+
+h1 {
+  padding: 24px 0;
+}
+
+.header {
+  background-color: $pink;
+  color: white;
+}
+
+.container {
+  position: relative;
+
+  .add-button {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+  }
+
+  table {
+    tr {
+      td {
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+button:focus,
+a:focus {
+  outline: none;
+}
+
+@for $i from 1 through 24 {
+  .p-#{$i} {
+    padding: #{$i}px;
+  }
+  .pt-#{$i} {
+    padding-top: #{$i}px;
+  }
+}
+.sort:hover {
+  color:red;
+}

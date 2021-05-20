@@ -1,0 +1,18 @@
+<div class="header text-center">
+  <h1>
+    <span translate>add_event</span>
+  </h1>
+</div>
+<div class="content p-24">
+  <form [formGroup]="form" fxLayout="column">
+    <mat-form-field appearance="outline">
+      <mat-label><span translate>event_name</span></mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="end center">
+      <button mat-raised-button color="accent" (click)="save()">
+        <span translate>save_event</span>
+      </button>
+    </div>
+  </form>
+</div>

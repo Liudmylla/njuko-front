@@ -1,0 +1,26 @@
+mat-sidenav-container {
+  position: absolute !important;
+  top: 56px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .mat-drawer-opened {
+    min-width: 520px;
+  }
+}
+
+.logo {
+  width: 100px;
+}
+
+q {
+  font-style: italic;
+  font-size: 1.2rem;
+  quotes: "« " " »";
+}
+
+.card-id {
+  font-size: 0.5em;
+  font-weight: normal;
+}

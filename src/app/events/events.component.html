@@ -1,0 +1,54 @@
+<mat-sidenav-container>
+  <div class="header text-center">
+    <h1>
+      <span translate>Events</span>
+    </h1>
+    <app-loader [isLoading]="isLoading"></app-loader>
+  </div>
+  <div class="container">
+    <button
+      class="add-button"
+      mat-fab
+      (click)="addEvent()"
+      [matTooltip]="'add_event' | translate"
+    >
+      <i class="fas fa-plus"></i>
+    </button>
+    <div class="pt-16" *ngIf="events && events.length">
+      <mat-card class="table" fxLayout="column" *ngFor="let event of events">
+        <mat-card-title fxLayout="row" fxLayoutAlign="space-between">
+          <div>
+            {{ event.name }}
+            <span class="card-id">{{ event._id }}</span>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="end center">
+            <button
+              mat-icon-button
+              (click)="addEdition(event)"
+              [matTooltip]="'add_edition' | translate"
+            >
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </mat-card-title>
+        <app-editions
+          *ngIf="event"
+          [event]="event"
+          [editionAdded]="editionAdded"
+        ></app-editions>
+      </mat-card>
+    </div>
+  </div>
+
+  <mat-sidenav #settingsSidenav position="end">
+    <app-add-event
+      *ngIf="action === 'addEvent'"
+      (saveEvent)="saveEvent($event)"
+    ></app-add-event>
+    <app-add-edition
+      *ngIf="action === 'addEdition'"
+      [event]="eventSelected"
+      (saveEdition)="saveEdition($event)"
+    ></app-add-edition>
+  </mat-sidenav>
+</mat-sidenav-container>

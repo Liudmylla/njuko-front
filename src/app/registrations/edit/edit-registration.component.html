@@ -1,0 +1,53 @@
+<div class="header text-center">
+  <h1>
+    <span translate>edit_registration</span>
+  </h1>
+</div>
+<div class="content p-24" *ngIf="form">
+  <form [formGroup]="form" fxLayout="column">
+    <div fxLayout="row" fxLayoutGap="24px">
+      <mat-form-field appearance="outline">
+        <mat-label><span translate>new BIB</span></mat-label>
+        <input matInput formControlName="newBibNumber" />
+      </mat-form-field>
+
+      <label><span translate>Gender</span></label>
+      <mat-radio-group
+        class="radio-group"
+        formControlName="gender"
+        fxLayout="row"
+        fxLayoutGap="16px"
+      >
+        <mat-radio-button class="radio-button" value="F">
+          <span translate>Women</span>
+        </mat-radio-button>
+        <mat-radio-button class="radio-button" value="M">
+          <span translate>Man</span>
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <mat-form-field appearance="outline">
+      <mat-label><span translate>FirstName</span></mat-label>
+      <input matInput formControlName="firstName" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label><span translate>LastName</span></mat-label>
+      <input matInput formControlName="lastName" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label><span translate>BirthDate</span></mat-label>
+      <input matInput formControlName="birthDate" [matDatepicker]="picker" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label><span translate>hh:mm:ss</span></mat-label>
+      <input matInput formControlName="timingResult" />
+    </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="end center">
+      <button mat-raised-button color="accent" (click)="save()">
+        <span translate>save_registration</span>
+      </button>
+    </div>
+  </form>
+</div>
